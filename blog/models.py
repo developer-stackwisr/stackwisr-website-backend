@@ -21,4 +21,4 @@ class Blog(models.Model):
     super(Blog, self).save(*args, **kwargs)
 
   def __str__(self) -> str:
-    return f"{self.title} by {self.author} on the {self.created}"
+    return f"{self.title} by {self.author} on {self.created}"
