@@ -30,8 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -146,7 +144,9 @@ CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
 
 CORS_ALLOWED_ORIGINS = [
-    os.getenv('FRONTEND_ORIGIN'),  # React development server
+  	'https://www.stackwisr.co.uk',
+	'http://localhost:5173',
+	'https://career-launchpad-landing-page.vercel.app',
 ]
 
 MEDIA_URL = '/media/'
