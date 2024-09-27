@@ -128,12 +128,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')  
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  
 
 STATICFILES_DIRS  = [
-  os.path.join(BASE_DIR, 'static')  
+  os.path.join(BASE_DIR, 'assets')  
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -149,5 +151,3 @@ CORS_ALLOWED_ORIGINS = [
 	'https://career-launchpad-landing-page.vercel.app',
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
