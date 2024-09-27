@@ -26,7 +26,7 @@ from decouple import config
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','167.172.61.220']
 
@@ -145,6 +145,16 @@ STATICFILES_DIRS  = [
   os.path.join(BASE_DIR, 'assets')  
 ]
 
+TINYMCE_DEFAULT_CONFIG = {
+  "theme": "silver",
+  "resize": "false",
+  "menubar": "file edit view insert format tools table help",
+  "toolbar":
+    "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment code typography",
+  "plugins":
+    "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table powerpaste advcode help wordcount spellchecker typography",
+  "selector": "textarea",
+}
 
 
 
