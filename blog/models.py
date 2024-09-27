@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from tinymce import models as tinymce_models
 from django.utils.text import slugify
 from .validators import validate_image
 
@@ -8,7 +8,7 @@ class Blog(models.Model):
   slug = models.SlugField(unique=True, max_length=160, blank=True)
   author = models.CharField(help_text='Author\'s name', max_length=50)
   title = models.CharField(max_length=250)
-  body = RichTextField()
+  body = tinymce_models.HTMLField()
   created = models.DateField(auto_now_add=True)
   updated = models.DateField(auto_now=True)
 
