@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'tinymce',
     'corsheaders',
     "contact",
-    "testimonial"
+    "testimonial",
 ]
 
 MIDDLEWARE = [
