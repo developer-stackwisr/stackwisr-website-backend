@@ -28,6 +28,7 @@ class BlogAPIView(APIView):
     if slug:
       blogDetail = get_object_or_404(Blog, slug=slug)
       serializer = BlogSerializer(blogDetail)
+      return Response(serializer.data)
     else: 
       posts = Blog.objects.all()
       paginator = self.pagination_class()
