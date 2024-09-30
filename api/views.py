@@ -34,7 +34,7 @@ class BlogAPIView(APIView):
       paginated_posts  = paginator.paginate_queryset(posts, request)
       
       serializer = BlogSerializer(paginated_posts, many=True)
-    return paginator.get_paginated_response(serializer.data)
+      return paginator.get_paginated_response(serializer.data)
   
 
 class LatestBlogPostsAPIView(APIView):
