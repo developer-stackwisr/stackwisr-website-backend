@@ -2,6 +2,7 @@ from django.db import models
 from tinymce import models as tinymce_models
 from django.utils.text import slugify
 from .validators import validate_image
+from bs4 import BeautifulSoup
 
 class Blog(models.Model):
   image = models.ImageField(upload_to='blog_images/', blank=True, null=True, validators=[validate_image])
@@ -18,7 +19,12 @@ class Blog(models.Model):
   
   def save(self, *args, **kwargs):
     if not self.slug:
-        self.slug = slugify(self.title)
+      self.slug = slugify(self.title)
+
+    if not self.meta_description:
+      soup = BeautifulSoup(self.body, 'html.parser')
+      self.meta_description = soup.get_text()[:350]
+    
     super(Blog, self).save(*args, **kwargs)
 
   def __str__(self) -> str:
