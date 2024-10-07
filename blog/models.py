@@ -11,7 +11,7 @@ class Blog(models.Model):
   body = tinymce_models.HTMLField()
   created = models.DateField(auto_now_add=True)
   updated = models.DateField(auto_now=True)
-  meta_description = models.CharField(max_length=500, blank=True, null=True)
+  meta_description = models.TextField(blank=True, null=True)
 
   class Meta:
     ordering = ['-created']
