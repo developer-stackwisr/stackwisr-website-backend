@@ -21,10 +21,14 @@ class Blog(models.Model):
     if not self.slug:
       self.slug = slugify(self.title)
 
+    if self.meta_description:
+      soup = BeautifulSoup(self.meta_description, 'html.parser')
+      self.meta_description = soup.get_text()[:350]  # Limit to 350 characters
+
     if not self.meta_description:
       soup = BeautifulSoup(self.body, 'html.parser')
-      self.meta_description = soup.get_text()[:350]
-    
+      self.meta_description = soup.get_text()[:350]  # Extract text from body
+
     super(Blog, self).save(*args, **kwargs)
 
   def __str__(self) -> str:
