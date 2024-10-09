@@ -8,7 +8,7 @@ class CareerPath(models.Model):
   description = models.CharField(max_length=350)
   rating = models.DecimalField(max_digits=3, decimal_places=1, help_text="i.e. 4.5")
   language = models.CharField(max_length=20,)
-  enroll_now_link = models.CharField(max_length=150)
+  enroll_now_link = models.CharField(max_length=150, blank=True, null=True)
   what_you_will_learn_list = models.JSONField(default=list)
   skills_you_will_gain = models.JSONField(default=list)
   potential_jobs = models.JSONField(default=list)
