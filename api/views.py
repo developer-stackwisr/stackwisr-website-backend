@@ -5,7 +5,7 @@ from blog.models import Blog
 from contact.models import  Contact
 from testimonial.models import Testimonial
 from careerpath.models import CareerPath
-from api.serializers import BlogSerializer, CareerPathSerializer, ContactSerializer, TestimonialSerializer
+from api.serializers import BlogSerializer, CareerPathSerializer, ContactSerializer, TestimonialSerializer, LeadSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -66,3 +66,12 @@ class CareerPathAPIView(APIView):
       serializer = CareerPathSerializer(careers, many=True)
     
     return Response(serializer.data)
+  
+class LeadAPIView(APIView):
+
+  def post(self,  request):
+    serializer = LeadSerializer(data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(status=status.HTTP_201_CREATED)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
