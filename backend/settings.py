@@ -173,3 +173,6 @@ CORS_ALLOWED_ORIGINS = [
 	'https://career-launchpad-landing-page.vercel.app',
 ]
 
+
+CORS_ALLOW_ALL_ORIGINS = True
+
