@@ -35,6 +35,11 @@ class CareerPathSerializer(ModelSerializer):
     model = CareerPath
     fields = '__all__'
 
+  def to_representation(self, instance):
+    representation = super().to_representation(instance)
+    representation['course_start_date'] = date.fromisoformat(representation['course_start_date']).strftime("%d, %B %Y")
+    return representation
+
 
 class LeadSerializer(ModelSerializer):
 
