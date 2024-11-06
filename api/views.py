@@ -2,10 +2,13 @@ from rest_framework.views import APIView
 from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import get_object_or_404
 from blog.models import Blog
+from django.core.mail import send_mail
+from django.conf import settings
 from contact.models import  Contact
 from testimonial.models import Testimonial
 from careerpath.models import CareerPath
-from api.serializers import BlogSerializer, CareerPathSerializer, ContactSerializer, TestimonialSerializer, LeadSerializer
+from resources.models import  Resources
+from api.serializers import BlogSerializer, CareerPathSerializer, ContactSerializer, TestimonialSerializer, LeadSerializer, ResourcesSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -73,5 +76,34 @@ class LeadAPIView(APIView):
     serializer = LeadSerializer(data=request.data)
     if serializer.is_valid():
       serializer.save()
+      # lead = request.data
+      
+      # send_mail(
+      #   subject="New Lead Created",
+      # message = f"Name: {lead.firstName}\n Email: {lead.email}\n Country: {lead.country}\n Phone: {lead.phone}\n CareerPath: {lead.careerPathName} \n Selected Plan: {lead.selectedPlan}\n Job title: {lead.job-title}\n Company: {lead.company}\n Message: {lead.message} Source: {lead.source}", 
+      # from_email=settings.DEFAULT_FROM_EMAIL, 
+      # recipient_list=[settings.NOTIFICATION_EMAIL], 
+      # fail_silently=False,
+      # )
       return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+
+class ResourcesPagination(PageNumberPagination):
+    page_size = 5  # Number of posts per page
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+class ResourcesAPIView(APIView):
+
+  pagination_class = ResourcesPagination
+  
+  def get(self, request, slug=None):
+    if slug:
+      resource = get_object_or_404(Resources, slug=slug)
+      serializer = ResourcesSerializer(resource)
+    else:
+      paginator = self.pagination_class()
+      resources = Resources.objects.all()
+      paginated_resources = paginator.paginate_queryset(resources, request)
+      serializer = ResourcesSerializer(paginated_resources, many=True)
+    return  paginator.get_paginated_response(serializer.data)

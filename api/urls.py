@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BlogAPIView, LeadAPIView,CareerPathAPIView, LatestBlogPostsAPIView, TestimonialAPIView
+from .views import BlogAPIView, LeadAPIView,CareerPathAPIView, LatestBlogPostsAPIView, TestimonialAPIView, ResourcesAPIView
 
 urlpatterns = [
   path('blog/posts/', BlogAPIView.as_view()),
@@ -9,4 +9,6 @@ urlpatterns = [
   path('leads/', LeadAPIView.as_view(), name='leads'),
   path('careerpaths/', CareerPathAPIView.as_view(), name='careerpath-list'),
   path('careerpaths/<slug:slug>/', CareerPathAPIView.as_view(), name='careerpath-detail'),
+  path('resources/', ResourcesAPIView.as_view(), name="resources"),
+  path('resources/<str:slug>/', ResourcesAPIView.as_view(), name="resource"),
 ]

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from datetime import datetime
-from django.utils.timezone import now
+# from django.utils.timezone import now
 
 class CareerPath(models.Model):
   img_display = models.ImageField(upload_to='career-path-images/', blank=True, null=True)
@@ -14,7 +14,7 @@ class CareerPath(models.Model):
   what_you_will_learn_list = models.JSONField(default=list)
   skills_you_will_gain = models.JSONField(default=list)
   potential_jobs = models.JSONField(default=list)
-  course_start_date = models.DateField(help_text="Date course starts", default=now())
+  course_start_date = models.DateField(help_text="Date course starts")
 
   def save(self, *args, **kwargs):
     if not self.slug:

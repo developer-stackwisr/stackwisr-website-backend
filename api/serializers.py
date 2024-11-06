@@ -4,6 +4,7 @@ from careerpath.models import CareerPath
 from contact.models import Contact
 from testimonial.models  import Testimonial
 from lead.models import Lead
+from resources.models import Resources
 from datetime import date
 
 class ContactSerializer(ModelSerializer):
@@ -46,3 +47,10 @@ class LeadSerializer(ModelSerializer):
   class Meta:
     model = Lead
     exclude = ['created']
+
+
+class ResourcesSerializer(ModelSerializer):
+
+  class Meta:
+    model = Resources
+    fields = "__all__"
