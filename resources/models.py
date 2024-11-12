@@ -6,7 +6,7 @@ class Resources(models.Model):
   slug = models.SlugField(unique=True, blank=True,  null=True)
   description = models.CharField(max_length=500)
   created =  models.DateField(auto_now_add=True)
-  resource_file = models.FileField(upload_to='resources/')
+  
 
   class Meta:
     ordering = ['-created']
@@ -19,3 +19,10 @@ class Resources(models.Model):
 
   def __str__(self):
     return self.title
+  
+class ResourceFile(models.Model):
+  resource = models.ForeignKey(Resources, on_delete=models.CASCADE, related_name='files')
+  file = models.FileField(upload_to='resources/')
+
+  def __str__(self):
+    return f"File(s) for {self.resource.title}"
