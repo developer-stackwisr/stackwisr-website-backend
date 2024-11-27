@@ -12,7 +12,8 @@ class Lead(models.Model):
   company = models.CharField(max_length=150, blank=True, null=True)
   message = models.CharField(max_length=500, blank=True, null=True)
   subscribe=models.CharField(max_length=3, null=True, blank=True)
+  country=models.TextField()
   created = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
-    return f"Plan: {self.selectedPlan}, Careerpath: {self.careerPathName}"
+    return f"Plan: {self.selectedPlan}, Careerpath: {self.careerPathName} from {self.country}"
