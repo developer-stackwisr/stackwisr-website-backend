@@ -12,7 +12,7 @@ class Lead(models.Model):
   company = models.CharField(max_length=150, blank=True, null=True)
   message = models.CharField(max_length=500, blank=True, null=True)
   subscribe=models.CharField(max_length=3, null=True, blank=True)
-  country=models.TextField()
+  country=models.CharField(max_length=100, default='')
   created = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
