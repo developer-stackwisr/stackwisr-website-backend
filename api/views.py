@@ -65,7 +65,7 @@ class CareerPathAPIView(APIView):
       except CareerPath.DoesNotExist:
         return Response({"error": "Career path not found."}, status=status.HTTP_404_NOT_FOUND)
     else:
-      careers = CareerPath.objects.all()
+      careers = CareerPath.objects.filter(display=True)
       serializer = CareerPathSerializer(careers, many=True)
     
     return Response(serializer.data)

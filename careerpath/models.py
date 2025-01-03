@@ -15,6 +15,7 @@ class CareerPath(models.Model):
   skills_you_will_gain = models.JSONField(default=list)
   potential_jobs = models.JSONField(default=list)
   course_start_status = models.CharField(max_length=250, help_text="Date course status")
+  display = models.BooleanField(default=True)
 
   def save(self, *args, **kwargs):
     if not self.slug:
